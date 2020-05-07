@@ -1,5 +1,9 @@
 # Webcamoid, The ultimate webcam suite! #
 
+This is Ryan's fork for the purposes of adding an image overlay plugin to address issue#143 https://github.com/webcamoid/webcamoid/issues/143
+
+We're building using travis - travis builds plugins, right?
+
 [Webcamoid](https://webcamoid.github.io/) is a full featured and multiplatform webcam suite.
 
 <a target="_blank" href="https://webcamoid.github.io/"><img src="http://webcamoid.github.io/theme/images/screenshots/Main.png" style="height: 240px;" /></a>
