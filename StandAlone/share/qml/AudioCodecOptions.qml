@@ -37,7 +37,7 @@ Dialog {
         for (let i = mainLayout.children.length - 1; i >= startChildren; i--)
             mainLayout.children[i].destroy()
 
-        let options = Recording.availableAudioCodecOptions
+        let options = recording.availableAudioCodecOptions
 
         for (let i in options) {
             if (options[i][2] != "flags") {
@@ -45,7 +45,7 @@ Dialog {
                 cLabel.text = options[i][0]
             }
 
-            let value = Recording.audioCodecOptions[options[i][0]]
+            let value = recording.audioCodecOptions[options[i][0]]
 
             if (!value)
                 value = options[i][7]
@@ -133,7 +133,7 @@ Dialog {
     }
 
     Connections {
-        target: Recording
+        target: recording
 
         onAudioCodecParamsChanged: {
             if (audioCodecParams.codec)
@@ -167,33 +167,27 @@ Dialog {
                 Layout.fillWidth: true
 
                 Component.onCompleted:
-                    text = Recording.audioCodecParams.bitrate
+                    text = recording.audioCodecParams.bitrate
             }
 
             Component.onCompleted: audioCodecOptions.updateOptions()
         }
     }
 
-    background: Rectangle {
-        color: audioCodecOptions.enabled?
-                   AkTheme.palette.active.window:
-                   AkTheme.palette.disabled.window
-    }
-
     onAccepted: {
-        let params = Recording.audioCodecParams
+        let params = recording.audioCodecParams
         params.bitrate = Number.fromLocaleString(locale, bitrate.text)
-        Recording.audioCodecParams = params
-        let options = Recording.audioCodecOptions
+        recording.audioCodecParams = params
+        let options = recording.audioCodecOptions
 
         for (let key in controlValues)
             options[key] = controlValues[key]
 
-        Recording.audioCodecOptions = options
+        recording.audioCodecOptions = options
     }
     onRejected: {
-        if (Recording.audioCodecParams.codec)
-            bitrate.text = Recording.audioCodecParams.bitrate
+        if (recording.audioCodecParams.codec)
+            bitrate.text = recording.audioCodecParams.bitrate
         else
             bitrate.text = ""
 
@@ -202,8 +196,8 @@ Dialog {
                 mainLayout.children[i].restore()
     }
     onReset: {
-        if (Recording.audioCodecParams.codec)
-            bitrate.text = Recording.audioCodecParams.defaultBitrate
+        if (recording.audioCodecParams.codec)
+            bitrate.text = recording.audioCodecParams.defaultBitrate
         else
             bitrate.text = ""
 
@@ -231,7 +225,7 @@ Dialog {
             signal controlChanged(string key, variant value)
 
             function restore() {
-                let value = Recording.audioCodecOptions[key]
+                let value = recording.audioCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -262,7 +256,7 @@ Dialog {
             signal controlChanged(string key, variant value)
 
             function restore() {
-                let value = Recording.audioCodecOptions[key]
+                let value = recording.audioCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -294,7 +288,7 @@ Dialog {
             signal controlChanged(string key, variant value)
 
             function restore() {
-                let value = Recording.audioCodecOptions[key]
+                let value = recording.audioCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -360,7 +354,7 @@ Dialog {
             signal controlChanged(string key, variant value)
 
             function restore() {
-                let value = Recording.audioCodecOptions[key]
+                let value = recording.audioCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -379,9 +373,7 @@ Dialog {
         id: controlBoolean
 
         Switch {
-            LayoutMirroring.enabled: true
-            LayoutMirroring.childrenInherit: true
-            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 
             property string key: ""
             property variant defaultValue: null
@@ -389,7 +381,7 @@ Dialog {
             signal controlChanged(string key, variant value)
 
             function restore() {
-                let value = Recording.audioCodecOptions[key]
+                let value = recording.audioCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -419,7 +411,7 @@ Dialog {
             signal controlChanged(string key, variant value)
 
             function restore() {
-                let value = Recording.audioCodecOptions[key]
+                let value = recording.audioCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -466,7 +458,7 @@ Dialog {
 
             function currentMenuIndex(options)
             {
-                let value = Recording.audioCodecOptions[options[0]]
+                let value = recording.audioCodecOptions[options[0]]
 
                 if (!value)
                     value = options[7]
@@ -505,14 +497,12 @@ Dialog {
                 id: classFlag
 
                 CheckBox {
-                    LayoutMirroring.enabled: true
-                    LayoutMirroring.childrenInherit: true
                     Layout.fillWidth: true
                 }
             }
 
             function restore() {
-                let value = Recording.audioCodecOptions[key]
+                let value = recording.audioCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -536,7 +526,7 @@ Dialog {
                 for (let i = flagsLayout.children.length - 1; i >= 0; i--)
                     flagsLayout.children[i].destroy()
 
-                let value = Recording.audioCodecOptions[options[0]]
+                let value = recording.audioCodecOptions[options[0]]
 
                 if (!value)
                     value = options[7]

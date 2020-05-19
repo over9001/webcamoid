@@ -40,6 +40,8 @@ Dialog {
     property int minimumWidth: AkUnit.create(100 * AkTheme.controlScale, "dp").pixels
     property int maximumWidth:
         width - AkUnit.create(64 * AkTheme.controlScale, "dp").pixels
+    readonly property color activeDark: AkTheme.palette.active.dark
+    readonly property color disabledDark: AkTheme.palette.disabled.dark
 
     onWidthChanged: {
         if (videoEffectsDialog.visible)
@@ -81,12 +83,12 @@ Dialog {
                         filter: searchEffect.text
 
                         function update() {
-                            var effects = VideoEffects.availableEffects
+                            var effects = videoEffects.availableEffects
                             model.clear()
 
                             for (let effect in effects) {
                                 let effectInfo =
-                                    VideoEffects.effectInfo(effects[effect])
+                                    videoEffects.effectInfo(effects[effect])
                                 model.append({
                                     effect: effects[effect],
                                     description:
@@ -98,7 +100,7 @@ Dialog {
 
                         function updatePreview() {
                             if (count < 1) {
-                                VideoEffects.setPreview("")
+                                videoEffects.setPreview("")
 
                                 return
                             }
@@ -109,19 +111,19 @@ Dialog {
                             var option = model.get(currentIndex)
 
                             if (option)
-                                VideoEffects.setPreview(option.effect)
+                                videoEffects.setPreview(option.effect)
                             else
-                                VideoEffects.setPreview("")
+                                videoEffects.setPreview("")
                         }
 
                         Connections {
-                            target: Webcamoid
+                            target: mediaTools
 
-                            onInterfaceLoaded: VideoEffects.setPreview("")
+                            onInterfaceLoaded: videoEffects.setPreview("")
                         }
 
                         Connections {
-                            target: VideoEffects
+                            target: videoEffects
 
                             onAvailableEffectsChanged: options.update()
                         }
@@ -137,7 +139,7 @@ Dialog {
             Rectangle {
                 id: rectangleRight
                 width: videoEffectsDialog.panelBorder
-                color: AkTheme.palette.active.dark
+                color: videoEffectsDialog.activeDark
                 anchors.leftMargin: -width / 2
                 anchors.left: optionsLayout.right
                 anchors.top: parent.top
@@ -178,12 +180,10 @@ Dialog {
             Switch {
                 //: Apply the effect over the other effects.
                 text: qsTr("Chain effect")
-                LayoutMirroring.enabled: true
-                LayoutMirroring.childrenInherit: true
                 Layout.fillWidth: true
-                checked: VideoEffects.chainEffects
+                checked: videoEffects.chainEffects
 
-                onCheckedChanged: VideoEffects.chainEffects = checked
+                onCheckedChanged: videoEffects.chainEffects = checked
             }
         }
     }
@@ -192,10 +192,10 @@ Dialog {
         if (visible)
             options.updatePreview()
         else
-            VideoEffects.setPreview("")
+            videoEffects.setPreview("")
     }
-    onAccepted: VideoEffects.applyPreview()
-    onRejected: VideoEffects.setPreview("")
+    onAccepted: videoEffects.applyPreview()
+    onRejected: videoEffects.setPreview("")
 
     header: Item {
         id: rectangle
@@ -217,18 +217,12 @@ Dialog {
 
         Rectangle {
             color: videoEffectsDialog.enabled?
-                       AkTheme.palette.active.dark:
-                       AkTheme.palette.disabled.dark
+                       videoEffectsDialog.activeDark:
+                       videoEffectsDialog.disabledDark
             height: AkUnit.create(1 * AkTheme.controlScale, "dp").pixels
             anchors.left: rectangle.left
             anchors.right: rectangle.right
             anchors.bottom: rectangle.bottom
         }
-    }
-
-    background: Rectangle {
-        color: videoEffectsDialog.enabled?
-                   AkTheme.palette.active.window:
-                   AkTheme.palette.disabled.window
     }
 }

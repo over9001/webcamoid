@@ -36,13 +36,6 @@ class PluginConfigsPrivate
         QString convertToAbsolute(const QString &path) const;
 };
 
-PluginConfigs::PluginConfigs(QQmlApplicationEngine *engine, QObject *parent):
-    QObject(parent)
-{
-    this->d = new PluginConfigsPrivate;
-    this->setQmlEngine(engine);
-}
-
 PluginConfigs::PluginConfigs(const CliOptions &cliOptions,
                              QQmlApplicationEngine *engine,
                              QObject *parent):
@@ -78,7 +71,7 @@ void PluginConfigs::setQmlEngine(QQmlApplicationEngine *engine)
     this->d->m_engine = engine;
 
     if (engine)
-        engine->rootContext()->setContextProperty("PluginConfigs", this);
+        engine->rootContext()->setContextProperty("pluginConfigs", this);
 }
 
 void PluginConfigs::loadProperties(const CliOptions &cliOptions)
@@ -234,23 +227,6 @@ void PluginConfigs::saveProperties()
     config.endGroup();
 
     config.beginGroup("PluginConfigs");
-    config.beginWriteArray("qmlPaths");
-    i = 0;
-
-    for (auto &path: Ak::qmlImportPathList()) {
-        config.setArrayIndex(i);
-
-#ifdef Q_OS_WIN32
-        config.setValue("path", applicationDir.relativeFilePath(path));
-#else
-        config.setValue("path", path);
-#endif
-
-        i++;
-    }
-
-    config.endArray();
-
     config.setValue("recursive", AkElement::recursiveSearch());
 
     config.beginWriteArray("paths");

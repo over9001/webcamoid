@@ -73,9 +73,7 @@ Page {
             }
             Switch {
                 id: newVersion
-                Layout.fillWidth: true
-                LayoutMirroring.enabled: true
-                LayoutMirroring.childrenInherit: true
+                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 
                 onCheckedChanged: updates.notifyNewVersion = checked
             }
@@ -143,7 +141,7 @@ Page {
 
                 Label {
                     text: qsTr("Your version of %1 is outdated. Latest version is <b>%2</b>.")
-                            .arg(Webcamoid.applicationName()).arg(updates.latestVersion)
+                            .arg(mediaTools.applicationName).arg(updates.latestVersion)
                     wrapMode: Text.WordWrap
                     Layout.fillWidth: true
                 }
@@ -152,7 +150,7 @@ Page {
                     icon.source: "image://icons/internet"
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
-                    onClicked: Qt.openUrlExternally(Webcamoid.projectDownloadsUrl())
+                    onClicked: Qt.openUrlExternally(mediaTools.projectDownloadsUrl())
                 }
             }
             ColumnLayout {
@@ -172,7 +170,7 @@ Page {
                     icon.source: "image://icons/bug"
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
-                    onClicked: Qt.openUrlExternally(Webcamoid.projectIssuesUrl())
+                    onClicked: Qt.openUrlExternally(mediaTools.projectIssuesUrl())
                 }
             }
         }

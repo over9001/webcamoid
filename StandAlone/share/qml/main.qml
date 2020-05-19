@@ -27,16 +27,16 @@ import Webcamoid 1.0
 
 ApplicationWindow {
     id: wdgMainWidget
-    title: Webcamoid.applicationName()
+    title: mediaTools.applicationName
            + " "
-           + Webcamoid.applicationVersion()
+           + mediaTools.applicationVersion
            + " - "
            + videoLayer.description(videoLayer.videoInput)
     visible: true
-    x: (Screen.width - Webcamoid.windowWidth) / 2
-    y: (Screen.height - Webcamoid.windowHeight) / 2
-    width: Webcamoid.windowWidth
-    height: Webcamoid.windowHeight
+    x: (Screen.width - mediaTools.windowWidth) / 2
+    y: (Screen.height - mediaTools.windowHeight) / 2
+    width: mediaTools.windowWidth
+    height: mediaTools.windowHeight
 
     function notifyUpdate(versionType)
     {
@@ -45,36 +45,19 @@ ApplicationWindow {
             trayIcon.show();
             trayIcon.showMessage(qsTr("New version available!"),
                                  qsTr("Download %1 %2 NOW!")
-                                    .arg(Webcamoid.applicationName())
+                                    .arg(mediaTools.applicationName())
                                     .arg(updates.latestVersion));
             notifyTimer.start();
         }
     }
 
-    function showPane(pane, widget)
-    {
-        for (let i in pane.children)
-            pane.children[i].destroy()
-
-        let component = Qt.createComponent(widget + ".qml")
-
-        if (component.status === Component.Ready) {
-            let object = component.createObject(pane)
-            object.Layout.fillWidth = true
-
-            return object
-        }
-
-        return null
-    }
-
     function savePhoto()
     {
-        Recording.takePhoto()
-        Recording.savePhoto(qsTr("%1/Picture %2.%3")
-                            .arg(Recording.imagesDirectory)
-                            .arg(Webcamoid.currentTime())
-                            .arg(Recording.imageFormat))
+        recording.takePhoto()
+        recording.savePhoto(qsTr("%1/Picture %2.%3")
+                            .arg(recording.imagesDirectory)
+                            .arg(mediaTools.currentTime())
+                            .arg(recording.imageFormat))
         photoPreviewSaveAnimation.start()
     }
 
@@ -95,8 +78,8 @@ ApplicationWindow {
         onTriggered: trayIcon.hide()
     }
 
-    onWidthChanged: Webcamoid.windowWidth = width
-    onHeightChanged: Webcamoid.windowHeight = height
+    onWidthChanged: mediaTools.windowWidth = width
+    onHeightChanged: mediaTools.windowHeight = height
     onClosing: trayIcon.hide()
 
     Component.onCompleted: {
@@ -112,7 +95,7 @@ ApplicationWindow {
     Connections {
         target: trayIcon
 
-        onMessageClicked: Qt.openUrlExternally(Webcamoid.projectDownloadsUrl())
+        onMessageClicked: Qt.openUrlExternally(mediaTools.projectDownloadsUrl())
     }
     Connections {
         target: videoLayer
@@ -129,7 +112,7 @@ ApplicationWindow {
     }
     Image {
         id: photoPreviewThumbnail
-        source: pathToUrl(Recording.lastPhotoPreview)
+        source: pathToUrl(recording.lastPhotoPreview)
         sourceSize: Qt.size(width, height)
         cache: false
         smooth: true
@@ -146,7 +129,7 @@ ApplicationWindow {
     }
     Image {
         id: videoPreviewThumbnail
-        source: pathToUrl(Recording.lastVideoPreview)
+        source: pathToUrl(recording.lastVideoPreview)
         sourceSize: Qt.size(width, height)
         cache: false
         smooth: true
@@ -258,7 +241,7 @@ ApplicationWindow {
         anchors.top: parent.top
         anchors.topMargin: AkUnit.create(16 * AkTheme.controlScale, "dp").pixels
         anchors.horizontalCenter: parent.horizontalCenter
-        visible: Recording.state == AkElement.ElementStatePlaying
+        visible: recording.state == AkElement.ElementStatePlaying
     }
     ColumnLayout {
         id: controlsLayout
@@ -277,7 +260,7 @@ ApplicationWindow {
 
             Image {
                 id: photoPreview
-                source: pathToUrl(Recording.lastPhotoPreview)
+                source: pathToUrl(recording.lastPhotoPreview)
                 width: AkUnit.create(32 * AkTheme.controlScale, "dp").pixels
                 height: AkUnit.create(32 * AkTheme.controlScale, "dp").pixels
                 sourceSize: Qt.size(width, height)
@@ -305,13 +288,14 @@ ApplicationWindow {
             RoundButton {
                 id: photoButton
                 icon.source: "image://icons/photo"
-                radius: AkUnit.create(32 * AkTheme.controlScale, "dp").pixels
+                width: AkUnit.create(64 * AkTheme.controlScale, "dp").pixels
+                height: AkUnit.create(64 * AkTheme.controlScale, "dp").pixels
                 x: (parent.width - width) / 2
                 y: (parent.height - height) / 2
                 ToolTip.visible: hovered
                 ToolTip.text: qsTr("Take a photo")
                 focus: true
-                enabled: Recording.state == AkElement.ElementStateNull
+                enabled: recording.state == AkElement.ElementStateNull
                          && (videoLayer.state === AkElement.ElementStatePlaying
                              || cameraControls.state == "Video")
 
@@ -350,10 +334,11 @@ ApplicationWindow {
             }
             RoundButton {
                 id: videoButton
-                icon.source: Recording.state == AkElement.ElementStateNull?
+                icon.source: recording.state == AkElement.ElementStateNull?
                                  "image://icons/video":
                                  "image://icons/record-stop"
-                radius: AkUnit.create(24 * AkTheme.controlScale, "dp").pixels
+                width: AkUnit.create(48 * AkTheme.controlScale, "dp").pixels
+                height: AkUnit.create(48 * AkTheme.controlScale, "dp").pixels
                 x: parent.width - width
                 y: (parent.height - height) / 2
                 ToolTip.visible: hovered
@@ -364,17 +349,17 @@ ApplicationWindow {
                 onClicked: {
                     if (cameraControls.state == "") {
                         cameraControls.state = "Video"
-                    } else if (Recording.state == AkElement.ElementStateNull) {
-                        Recording.state = AkElement.ElementStatePlaying
+                    } else if (recording.state == AkElement.ElementStateNull) {
+                        recording.state = AkElement.ElementStatePlaying
                     } else {
-                        Recording.state = AkElement.ElementStateNull
+                        recording.state = AkElement.ElementStateNull
                         videoPreviewSaveAnimation.start()
                     }
                 }
             }
             Image {
                 id: videoPreview
-                source: pathToUrl(Recording.lastVideoPreview)
+                source: pathToUrl(recording.lastVideoPreview)
                 width: 0
                 height: 0
                 sourceSize: Qt.size(width, height)
@@ -397,7 +382,7 @@ ApplicationWindow {
 
                     onClicked: {
                         if (videoPreview.status == Image.Ready)
-                            Qt.openUrlExternally("file://" + Recording.lastVideo)
+                            Qt.openUrlExternally("file://" + recording.lastVideo)
                     }
                 }
             }
@@ -414,12 +399,14 @@ ApplicationWindow {
                     }
                     PropertyChanges {
                         target: photoButton
-                        radius: AkUnit.create(24 * AkTheme.controlScale, "dp").pixels
+                        width: AkUnit.create(48 * AkTheme.controlScale, "dp").pixels
+                        height: AkUnit.create(48 * AkTheme.controlScale, "dp").pixels
                         x: 0
                     }
                     PropertyChanges {
                         target: videoButton
-                        radius: AkUnit.create(32 * AkTheme.controlScale, "dp").pixels
+                        width: AkUnit.create(64 * AkTheme.controlScale, "dp").pixels
+                        height: AkUnit.create(64 * AkTheme.controlScale, "dp").pixels
                         x: (parent.width - width) / 2
                     }
                     PropertyChanges {
@@ -483,190 +470,6 @@ ApplicationWindow {
     }
     AudioVideoPanel {
         id: audioVideoPanel
-    }
-    Item {
-        id: splitView
-        anchors.fill: parent
-
-        property int panelBorder: AkUnit.create(1 * AkTheme.controlScale, "dp").pixels
-        property int dragBorder: AkUnit.create(4 * AkTheme.controlScale, "dp").pixels
-        property int minimumWidth: 100
-
-        onWidthChanged: {
-            paneLeft.width = Math.max(paneLeft.width,
-                                      splitView.minimumWidth)
-            paneLeft.width = Math.min(paneLeft.width,
-                                      splitView.width
-                                      - paneRight.width
-                                      - splitView.panelBorder
-                                      - splitView.dragBorder)
-            paneRight.width = Math.max(paneRight.width,
-                                       splitView.minimumWidth)
-            paneRight.width = Math.min(paneRight.width,
-                                       splitView.width
-                                       - paneLeft.width
-                                       - splitView.panelBorder
-                                       - splitView.dragBorder)
-        }
-
-        Pane {
-            id: paneLeft
-            implicitWidth: 250
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.left: parent.left
-            visible: optionSettings.checked
-
-            ScrollView {
-                id: scrollViewLeft
-                contentHeight: paneLeftLayout.height
-                anchors.fill: parent
-                clip: true
-
-                ColumnLayout {
-                    id: paneLeftLayout
-                    width: scrollViewLeft.width
-                }
-            }
-        }
-        Rectangle {
-            id: rectangleLeft
-            width: splitView.panelBorder
-            color: AkTheme.palette.active.dark
-            anchors.leftMargin: -splitView.panelBorder / 2
-            anchors.left: paneLeft.right
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            visible: paneLeft.visible
-        }
-        MouseArea {
-            cursorShape: Qt.SizeHorCursor
-            width: splitView.panelBorder + 2 * splitView.dragBorder
-            anchors.leftMargin: -width / 2
-            anchors.left: paneLeft.right
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            drag.axis: Drag.XAxis
-            visible: paneLeft.visible
-
-            onPositionChanged: {
-                paneLeft.width += mouse.x
-                paneLeft.width = Math.max(paneLeft.width,
-                                          splitView.minimumWidth)
-                paneLeft.width = Math.min(paneLeft.width,
-                                          splitView.width
-                                          - paneRight.width
-                                          - splitView.panelBorder
-                                          - splitView.dragBorder)
-            }
-        }
-
-        Pane {
-            id: paneRight
-            implicitWidth: 450
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.right: parent.right
-            visible: optionSettings.checked
-
-            ScrollView {
-                id: scrollViewRight
-                contentHeight: paneRightLayout.height
-                anchors.fill: parent
-                clip: true
-
-                ColumnLayout {
-                    id: paneRightLayout
-                    width: scrollViewRight.width
-                }
-            }
-        }
-        Rectangle {
-            id: rectangleRight
-            width: splitView.panelBorder
-            color: AkTheme.palette.active.dark
-            anchors.rightMargin: -splitView.panelBorder / 2
-            anchors.right: paneRight.left
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            visible: paneRight.visible
-        }
-        MouseArea {
-            cursorShape: Qt.SizeHorCursor
-            width: splitView.panelBorder + 2 * splitView.dragBorder
-            anchors.rightMargin: -width / 2
-            anchors.right: rectangleRight.left
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            drag.axis: Drag.XAxis
-            visible: paneRight.visible
-
-            onPositionChanged: {
-                paneRight.width -= mouse.x
-                paneRight.width = Math.max(paneRight.width,
-                                           splitView.minimumWidth)
-                paneRight.width = Math.min(paneRight.width,
-                                           splitView.width
-                                           - paneLeft.width
-                                           - splitView.panelBorder
-                                           - splitView.dragBorder)
-            }
-        }
-    }
-
-    footer: ToolBar {
-        id: toolBar
-
-        ButtonGroup {
-            id: buttonGroup
-
-            property Item currentOption: null
-
-            onClicked: {
-                if (currentOption == button) {
-                    currentOption = null
-                    button.checked = false
-                } else {
-                    currentOption = button
-                }
-            }
-        }
-        RowLayout {
-            id: iconBar
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.bottom
-            anchors.top: parent.top
-            spacing: 0
-
-            ToolButton {
-                id: optionSettings
-                implicitWidth: toolBar.height
-                implicitHeight: toolBar.height
-                icon.source: "image://icons/settings"
-                icon.width: 0.75 * implicitWidth
-                icon.height: 0.75 * implicitHeight
-                checkable: true
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Preferences")
-                display: AbstractButton.IconOnly
-                ButtonGroup.group: buttonGroup
-
-                onClicked: {
-                    let options = {
-                        "output": "OutputConfig",
-                    }
-                    let configBar = showPane(paneLeftLayout, "ConfigBar")
-
-                    if (options[configBar.option])
-                        showPane(paneRightLayout, options[configBar.option])
-
-                    configBar.onOptionChanged.connect(function () {
-                        if (options[configBar.option])
-                            showPane(paneRightLayout, options[configBar.option])
-                    })
-                }
-            }
-        }
     }
 
     SequentialAnimation {

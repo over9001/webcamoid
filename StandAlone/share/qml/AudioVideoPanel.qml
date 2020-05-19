@@ -29,7 +29,7 @@ OptionsPanel {
                qsTr("Video"):
            layout.currentIndex < 3?
                "":
-               qsTr("Video Input Options")
+               qsTr("Video Source Options")
     edge: Qt.RightEdge
 
     function previousPage()
@@ -59,6 +59,7 @@ OptionsPanel {
 
     contents: StackLayout {
         id: layout
+        clip: true
 
         AudioOptions {
         }

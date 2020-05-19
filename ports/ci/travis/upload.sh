@@ -32,7 +32,7 @@ if [[ ( ! -z "$DAILY_BUILD" || ! -z "$RELEASE_BUILD" ) && "$TRAVIS_BRANCH" == "m
         version=$VER_MAJ.$VER_MIN.$VER_PAT
         publish=false
     else
-        version=daily2
+        version=daily
         publish=true
     fi
 
@@ -62,8 +62,9 @@ if [[ ( ! -z "$DAILY_BUILD" || ! -z "$RELEASE_BUILD" ) && "$TRAVIS_BRANCH" == "m
     done
 
     # Upload to Github Releases
+    upload=false
 
-    if [[ ! -z "$DAILY_BUILD" && "$TRAVIS_BRANCH" == "master" ]]; then
+    if [[ ! -z "$DAILY_BUILD" && "$TRAVIS_BRANCH" == master && "$upload" == true ]]; then
         hub=''
 
         if [ "${TRAVIS_OS_NAME}" = linux ]; then

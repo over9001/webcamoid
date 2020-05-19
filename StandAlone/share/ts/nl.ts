@@ -164,6 +164,44 @@
     </message>
 </context>
 <context>
+    <name>AddVideoFormat</name>
+    <message>
+        <location filename="../qml/AddVideoFormat.qml" line="42"/>
+        <source>Add Video Format</source>
+        <translation>Videoformaat toevoegen</translation>
+    </message>
+    <message>
+        <location filename="../qml/AddVideoFormat.qml" line="43"/>
+        <source>Change Video Format</source>
+        <translation>Videoformaat aanpassen</translation>
+    </message>
+    <message>
+        <location filename="../qml/AddVideoFormat.qml" line="95"/>
+        <source>Remove format</source>
+        <translation>Formaat verwijderen</translation>
+    </message>
+    <message>
+        <location filename="../qml/AddVideoFormat.qml" line="106"/>
+        <source>Format</source>
+        <translation>Formaat</translation>
+    </message>
+    <message>
+        <location filename="../qml/AddVideoFormat.qml" line="115"/>
+        <source>Width</source>
+        <translation>Breedte</translation>
+    </message>
+    <message>
+        <location filename="../qml/AddVideoFormat.qml" line="126"/>
+        <source>Height</source>
+        <translation>Hoogte</translation>
+    </message>
+    <message>
+        <location filename="../qml/AddVideoFormat.qml" line="137"/>
+        <source>Frame rate</source>
+        <translation>Framerate</translation>
+    </message>
+</context>
+<context>
     <name>AudioCodecOptions</name>
     <message>
         <location filename="../qml/AudioCodecOptions.qml" line="27"/>
@@ -247,17 +285,8 @@
     </message>
     <message>
         <location filename="../qml/AudioVideoPanel.qml" line="32"/>
-        <source>Video Input Options</source>
+        <source>Video Source Options</source>
         <translation>Video-invoeropties</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigBar</name>
-    <message>
-        <location filename="../qml/ConfigBar.qml" line="44"/>
-        <source>Output</source>
-        <extracomment>Configuration for video output, like virtual camera or streaming.</extracomment>
-        <translation>Uitvoer</translation>
     </message>
 </context>
 <context>
@@ -271,37 +300,37 @@
 <context>
     <name>GeneralConfig</name>
     <message>
-        <location filename="../qml/GeneralConfig.qml" line="77"/>
+        <location filename="../qml/GeneralConfig.qml" line="75"/>
         <source>Video capture</source>
         <translation>Videovastlegging</translation>
     </message>
     <message>
-        <location filename="../qml/GeneralConfig.qml" line="87"/>
+        <location filename="../qml/GeneralConfig.qml" line="85"/>
         <source>Desktop capture</source>
         <translation>Bureaubladvastlegging</translation>
     </message>
     <message>
-        <location filename="../qml/GeneralConfig.qml" line="97"/>
+        <location filename="../qml/GeneralConfig.qml" line="95"/>
         <source>Audio capture/play</source>
         <translation>Audiovastlegging/afspelen</translation>
     </message>
     <message>
-        <location filename="../qml/GeneralConfig.qml" line="107"/>
+        <location filename="../qml/GeneralConfig.qml" line="105"/>
         <source>Video convert</source>
         <translation>Videoconvertering</translation>
     </message>
     <message>
-        <location filename="../qml/GeneralConfig.qml" line="117"/>
+        <location filename="../qml/GeneralConfig.qml" line="115"/>
         <source>Audio convert</source>
         <translation>Audioconvertering</translation>
     </message>
     <message>
-        <location filename="../qml/GeneralConfig.qml" line="160"/>
+        <location filename="../qml/GeneralConfig.qml" line="158"/>
         <source>Virtual camera driver</source>
         <translation>Virtueel camerastuurprogramma</translation>
     </message>
     <message>
-        <location filename="../qml/GeneralConfig.qml" line="127"/>
+        <location filename="../qml/GeneralConfig.qml" line="125"/>
         <source>Video playback</source>
         <translation>Video afspelen</translation>
     </message>
@@ -312,17 +341,17 @@
         <translation>Bronnen afspelen na opstarten</translation>
     </message>
     <message>
-        <location filename="../qml/GeneralConfig.qml" line="68"/>
+        <location filename="../qml/GeneralConfig.qml" line="66"/>
         <source>Frameworks and libraries</source>
         <translation>Frameworks en bibliotheken</translation>
     </message>
     <message>
-        <location filename="../qml/GeneralConfig.qml" line="137"/>
+        <location filename="../qml/GeneralConfig.qml" line="135"/>
         <source>Video record</source>
         <translation>Video opnemen</translation>
     </message>
     <message>
-        <location filename="../qml/GeneralConfig.qml" line="147"/>
+        <location filename="../qml/GeneralConfig.qml" line="145"/>
         <source>Root method</source>
         <translation>Rootmethode</translation>
     </message>
@@ -358,17 +387,9 @@
 <context>
     <name>MediaTools</name>
     <message>
-        <location filename="../../src/mediatools.cpp" line="245"/>
+        <location filename="../../src/mediatools.cpp" line="200"/>
         <source>Daily Build</source>
         <translation>Dagelijkse ontwikkelingsversie</translation>
-    </message>
-</context>
-<context>
-    <name>OutputConfig</name>
-    <message>
-        <location filename="../qml/OutputConfig.qml" line="44"/>
-        <source>Enable virtual camera</source>
-        <translation>Virtuele camera inschakelen</translation>
     </message>
 </context>
 <context>
@@ -389,22 +410,22 @@
         <translation>Plug-ins zoeken in onderliggende mappen</translation>
     </message>
     <message>
-        <location filename="../qml/PluginConfig.qml" line="127"/>
+        <location filename="../qml/PluginConfig.qml" line="124"/>
         <source>Add path</source>
         <translation>Pad toevoegen</translation>
     </message>
     <message>
-        <location filename="../qml/PluginConfig.qml" line="170"/>
+        <location filename="../qml/PluginConfig.qml" line="167"/>
         <source>Remove</source>
         <translation>Verwijderen</translation>
     </message>
     <message>
-        <location filename="../qml/PluginConfig.qml" line="204"/>
+        <location filename="../qml/PluginConfig.qml" line="201"/>
         <source>Update</source>
         <translation>Bijwerken</translation>
     </message>
     <message>
-        <location filename="../qml/PluginConfig.qml" line="251"/>
+        <location filename="../qml/PluginConfig.qml" line="248"/>
         <source>Add plugins search path</source>
         <translation>Plug-inzoekpad toevoegen</translation>
     </message>
@@ -474,50 +495,50 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../qml/SettingsDialog.qml" line="74"/>
+        <location filename="../qml/SettingsDialog.qml" line="76"/>
         <source>Image Capture</source>
         <translation>Afbeelding vastleggen</translation>
     </message>
     <message>
-        <location filename="../qml/SettingsDialog.qml" line="75"/>
+        <location filename="../qml/SettingsDialog.qml" line="77"/>
         <source>Video Recording</source>
         <translation>Video-opname</translation>
     </message>
     <message>
-        <location filename="../qml/SettingsDialog.qml" line="76"/>
+        <location filename="../qml/SettingsDialog.qml" line="78"/>
         <source>General Options</source>
         <translation>Algemene opties</translation>
     </message>
     <message>
-        <location filename="../qml/SettingsDialog.qml" line="77"/>
+        <location filename="../qml/SettingsDialog.qml" line="79"/>
         <source>Plugins</source>
         <translation>Plug-ins</translation>
     </message>
     <message>
-        <location filename="../qml/SettingsDialog.qml" line="78"/>
+        <location filename="../qml/SettingsDialog.qml" line="80"/>
         <source>Updates</source>
         <translation>Updates</translation>
     </message>
     <message>
-        <location filename="../qml/SettingsDialog.qml" line="82"/>
+        <location filename="../qml/SettingsDialog.qml" line="84"/>
         <source>About</source>
         <extracomment>Information of the program, like name, description, vesion, etc..</extracomment>
         <translation>Over</translation>
     </message>
     <message>
-        <location filename="../qml/SettingsDialog.qml" line="86"/>
+        <location filename="../qml/SettingsDialog.qml" line="88"/>
         <source>Contributors</source>
         <extracomment>List of people contributing to the project: software developers, translators, designers, etc..</extracomment>
         <translation>Bijdragers</translation>
     </message>
     <message>
-        <location filename="../qml/SettingsDialog.qml" line="88"/>
+        <location filename="../qml/SettingsDialog.qml" line="90"/>
         <source>License</source>
         <extracomment>Program license.</extracomment>
         <translation>Licentie</translation>
     </message>
     <message>
-        <location filename="../qml/SettingsDialog.qml" line="92"/>
+        <location filename="../qml/SettingsDialog.qml" line="94"/>
         <source>3rd Party Licenses</source>
         <extracomment>License for 3rd party components used in Webcamoid, like libraries and code snippets.</extracomment>
         <translation>Externe licenties</translation>
@@ -582,62 +603,62 @@
         <translation>Melding tonen bij updates</translation>
     </message>
     <message>
-        <location filename="../qml/UpdatesConfig.qml" line="84"/>
+        <location filename="../qml/UpdatesConfig.qml" line="82"/>
         <source>Check new versions</source>
         <translation>Controleren op updates</translation>
     </message>
     <message>
-        <location filename="../qml/UpdatesConfig.qml" line="92"/>
+        <location filename="../qml/UpdatesConfig.qml" line="90"/>
         <source>Daily</source>
         <translation>Dagelijks</translation>
     </message>
     <message>
-        <location filename="../qml/UpdatesConfig.qml" line="96"/>
+        <location filename="../qml/UpdatesConfig.qml" line="94"/>
         <source>Every two days</source>
         <translation>Elke twee dagen</translation>
     </message>
     <message>
-        <location filename="../qml/UpdatesConfig.qml" line="100"/>
+        <location filename="../qml/UpdatesConfig.qml" line="98"/>
         <source>Weekly</source>
         <translation>Wekelijks</translation>
     </message>
     <message>
-        <location filename="../qml/UpdatesConfig.qml" line="104"/>
+        <location filename="../qml/UpdatesConfig.qml" line="102"/>
         <source>Every two weeks</source>
         <translation>Elke twee weken</translation>
     </message>
     <message>
-        <location filename="../qml/UpdatesConfig.qml" line="108"/>
+        <location filename="../qml/UpdatesConfig.qml" line="106"/>
         <source>Monthly</source>
         <translation>Maandelijks</translation>
     </message>
     <message>
-        <location filename="../qml/UpdatesConfig.qml" line="112"/>
+        <location filename="../qml/UpdatesConfig.qml" line="110"/>
         <source>Never</source>
         <translation>Nooit</translation>
     </message>
     <message>
-        <location filename="../qml/UpdatesConfig.qml" line="124"/>
+        <location filename="../qml/UpdatesConfig.qml" line="122"/>
         <source>Last updated</source>
         <translation>Laatst bijgewerkt</translation>
     </message>
     <message>
-        <location filename="../qml/UpdatesConfig.qml" line="145"/>
+        <location filename="../qml/UpdatesConfig.qml" line="143"/>
         <source>Your version of %1 is outdated. Latest version is &lt;b&gt;%2&lt;/b&gt;.</source>
         <translation>De versie van %1 die je gebruikt is verouderd. De nieuwste versie is &lt;b&gt;%2&lt;/b&gt;.</translation>
     </message>
     <message>
-        <location filename="../qml/UpdatesConfig.qml" line="151"/>
+        <location filename="../qml/UpdatesConfig.qml" line="149"/>
         <source>Upgrade Now!</source>
         <translation>Nu bijwerken!</translation>
     </message>
     <message>
-        <location filename="../qml/UpdatesConfig.qml" line="166"/>
+        <location filename="../qml/UpdatesConfig.qml" line="164"/>
         <source>Thanks for using a &lt;b&gt;development version&lt;/b&gt;!&lt;br /&gt;It will be very helpful if you can report any bug and suggestions you have.</source>
         <translation>Bedankt voor het testen van de &lt;b&gt;ontwikkelingsversie&lt;/b&gt;!&lt;br /&gt;Het zou fijn zijn als je bugs kunt rapporteren en ideeën kunt aandragen.</translation>
     </message>
     <message>
-        <location filename="../qml/UpdatesConfig.qml" line="171"/>
+        <location filename="../qml/UpdatesConfig.qml" line="169"/>
         <source>Report a Bug</source>
         <translation>Bug rapporteren</translation>
     </message>
@@ -667,6 +688,34 @@
     </message>
 </context>
 <context>
+    <name>VideoDeviceOptions</name>
+    <message>
+        <location filename="../qml/VideoDeviceOptions.qml" line="141"/>
+        <source>Virtual Camera Options</source>
+        <translation>Virtuelecamera-opties</translation>
+    </message>
+    <message>
+        <location filename="../qml/VideoDeviceOptions.qml" line="142"/>
+        <source>Add Virtual Camera</source>
+        <translation>Virtuele camera toevoegen</translation>
+    </message>
+    <message>
+        <location filename="../qml/VideoDeviceOptions.qml" line="167"/>
+        <source>Virtual camera name</source>
+        <translation>Naam van virtuele camera</translation>
+    </message>
+    <message>
+        <location filename="../qml/VideoDeviceOptions.qml" line="176"/>
+        <source>Add format</source>
+        <translation>Formaat toevoegen</translation>
+    </message>
+    <message>
+        <location filename="../qml/VideoDeviceOptions.qml" line="186"/>
+        <source>Remove all formats</source>
+        <translation>Alle formaten verwijderen</translation>
+    </message>
+</context>
+<context>
     <name>VideoEffectOptions</name>
     <message>
         <location filename="../qml/VideoEffectOptions.qml" line="61"/>
@@ -682,12 +731,12 @@
         <translation>Video-effect toevoegen</translation>
     </message>
     <message>
-        <location filename="../qml/VideoEffectsDialog.qml" line="67"/>
+        <location filename="../qml/VideoEffectsDialog.qml" line="69"/>
         <source>Search effect</source>
         <translation>Effect zoeken</translation>
     </message>
     <message>
-        <location filename="../qml/VideoEffectsDialog.qml" line="180"/>
+        <location filename="../qml/VideoEffectsDialog.qml" line="182"/>
         <source>Chain effect</source>
         <extracomment>Apply the effect over the other effects.</extracomment>
         <translation>Algeheel effect</translation>
@@ -759,6 +808,15 @@
     </message>
 </context>
 <context>
+    <name>VideoLayer</name>
+    <message>
+        <location filename="../../src/videolayer.cpp" line="239"/>
+        <source>No Output</source>
+        <extracomment>Disable video output, don&apos;t send the video to the output device.</extracomment>
+        <translation>Geen uitvoer</translation>
+    </message>
+</context>
+<context>
     <name>VideoOptions</name>
     <message>
         <location filename="../qml/VideoOptions.qml" line="33"/>
@@ -774,9 +832,14 @@
 <context>
     <name>VideoOutputs</name>
     <message>
-        <location filename="../qml/VideoOutputs.qml" line="31"/>
+        <location filename="../qml/VideoOutputs.qml" line="32"/>
         <source>Add output</source>
         <translation>Uitvoer toevoegen</translation>
+    </message>
+    <message>
+        <location filename="../qml/VideoOutputs.qml" line="39"/>
+        <source>Remove all outputs</source>
+        <translation>Alle uitvoeren verwijderen</translation>
     </message>
 </context>
 <context>
@@ -797,29 +860,29 @@
         <translation>Audio opnemen</translation>
     </message>
     <message>
-        <location filename="../qml/VideoRecording.qml" line="137"/>
+        <location filename="../qml/VideoRecording.qml" line="135"/>
         <source>File format</source>
         <translation>Bestandsformaat</translation>
     </message>
     <message>
-        <location filename="../qml/VideoRecording.qml" line="166"/>
-        <location filename="../qml/VideoRecording.qml" line="201"/>
-        <location filename="../qml/VideoRecording.qml" line="238"/>
+        <location filename="../qml/VideoRecording.qml" line="164"/>
+        <location filename="../qml/VideoRecording.qml" line="199"/>
+        <location filename="../qml/VideoRecording.qml" line="236"/>
         <source>Configure</source>
         <translation>Instellen</translation>
     </message>
     <message>
-        <location filename="../qml/VideoRecording.qml" line="172"/>
+        <location filename="../qml/VideoRecording.qml" line="170"/>
         <source>Video codec</source>
         <translation>Videocodec</translation>
     </message>
     <message>
-        <location filename="../qml/VideoRecording.qml" line="207"/>
+        <location filename="../qml/VideoRecording.qml" line="205"/>
         <source>Audio codec</source>
         <translation>Audiocodec</translation>
     </message>
     <message>
-        <location filename="../qml/VideoRecording.qml" line="248"/>
+        <location filename="../qml/VideoRecording.qml" line="246"/>
         <source>Select the folder to save your videos</source>
         <translation>Kies de map waarin je de video&apos;s wilt opslaan</translation>
     </message>
@@ -2169,61 +2232,6 @@
         <translation>Kies de vignettekleur</translation>
     </message>
     <message>
-        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="60"/>
-        <source>Devices</source>
-        <translation>Apparaten</translation>
-    </message>
-    <message>
-        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="77"/>
-        <source>Add</source>
-        <translation>Toevoegen</translation>
-    </message>
-    <message>
-        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="88"/>
-        <source>Edit</source>
-        <translation>Bewerken</translation>
-    </message>
-    <message>
-        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="101"/>
-        <source>Remove</source>
-        <translation>Verwijderen</translation>
-    </message>
-    <message>
-        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="112"/>
-        <source>Remove All</source>
-        <translation>Alles verwijderen</translation>
-    </message>
-    <message>
-        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="133"/>
-        <source>Description</source>
-        <translation>Omschrijving</translation>
-    </message>
-    <message>
-        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="139"/>
-        <source>Camera name (optional)</source>
-        <translation>Naam van camera (optioneel)</translation>
-    </message>
-    <message>
-        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="262"/>
-        <source>Error creating camera: </source>
-        <translation>Fout bij openen van camera: </translation>
-    </message>
-    <message>
-        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="150"/>
-        <source>Ok</source>
-        <translation>Oké</translation>
-    </message>
-    <message>
-        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="193"/>
-        <source>Cancel</source>
-        <translation>Annuleren</translation>
-    </message>
-    <message>
-        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="248"/>
-        <source>This system is not supported yet</source>
-        <translation>Dit systeem wordt nog niet ondersteund</translation>
-    </message>
-    <message>
         <location filename="../../../libAvKys/Plugins/Warp/share/qml/main.qml" line="28"/>
         <location filename="../../../libAvKys/Plugins/Warp/share/qml/main.qml" line="32"/>
         <source>Ripples</source>
@@ -2245,39 +2253,59 @@
         <translation>Download %1 %2 NU!</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="185"/>
+        <location filename="../qml/main.qml" line="168"/>
         <source>Use flash</source>
         <translation>Flitser gebruiken</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="205"/>
+        <location filename="../qml/main.qml" line="188"/>
         <source>Now</source>
         <translation>Zojuist</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="212"/>
+        <location filename="../qml/main.qml" line="195"/>
         <source>%1 seconds</source>
         <translation>%1 seconden</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="312"/>
+        <location filename="../qml/main.qml" line="296"/>
         <source>Take a photo</source>
         <translation>Foto maken</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="74"/>
+        <location filename="../qml/main.qml" line="57"/>
         <source>%1/Picture %2.%3</source>
         <translation>%1/Afbeelding %2.%3</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="360"/>
+        <location filename="../qml/main.qml" line="345"/>
         <source>Record video</source>
         <translation>Video opnemen</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="650"/>
-        <source>Preferences</source>
-        <translation>Instellingen</translation>
+        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="29"/>
+        <source>Horizontal mirror</source>
+        <translation>Horizontaal spiegelen</translation>
+    </message>
+    <message>
+        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="38"/>
+        <source>Vertical mirror</source>
+        <translation>Verticaal spiegelen</translation>
+    </message>
+    <message>
+        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="47"/>
+        <source>Scaling</source>
+        <translation>Afmetingen</translation>
+    </message>
+    <message>
+        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="65"/>
+        <source>Aspect ratio</source>
+        <translation>Beeldverhouding</translation>
+    </message>
+    <message>
+        <location filename="../../../libAvKys/Plugins/VirtualCamera/share/qml/main.qml" line="87"/>
+        <source>Swap red and blue</source>
+        <translation>Rood en blauw omwisselen</translation>
     </message>
 </context>
 </TS>

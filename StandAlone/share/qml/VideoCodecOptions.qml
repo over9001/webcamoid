@@ -37,7 +37,7 @@ Dialog {
         for (let i = mainLayout.children.length - 1; i >= startChildren; i--)
             mainLayout.children[i].destroy()
 
-        let options = Recording.availableVideoCodecOptions
+        let options = recording.availableVideoCodecOptions
 
         for (let i in options) {
             if (options[i][2] != "flags") {
@@ -45,7 +45,7 @@ Dialog {
                 cLabel.text = options[i][0]
             }
 
-            let value = Recording.videoCodecOptions[options[i][0]]
+            let value = recording.videoCodecOptions[options[i][0]]
 
             if (!value)
                 value = options[i][7]
@@ -133,7 +133,7 @@ Dialog {
     }
 
     Connections {
-        target: Recording
+        target: recording
 
         onVideoCodecParamsChanged: {
             if (videoCodecParams.codec) {
@@ -170,7 +170,7 @@ Dialog {
                 Layout.fillWidth: true
 
                 Component.onCompleted:
-                    text = Recording.videoCodecParams.bitrate
+                    text = recording.videoCodecParams.bitrate
             }
             Label {
                 text: qsTr("Keyframes stride")
@@ -184,35 +184,29 @@ Dialog {
                 Layout.fillWidth: true
 
                 Component.onCompleted:
-                    text = Recording.videoCodecParams.gop
+                    text = recording.videoCodecParams.gop
             }
 
             Component.onCompleted: videoCodecOptions.updateOptions()
         }
     }
 
-    background: Rectangle {
-        color: videoCodecOptions.enabled?
-                   AkTheme.palette.active.window:
-                   AkTheme.palette.disabled.window
-    }
-
     onAccepted: {
-        let params = Recording.videoCodecParams
+        let params = recording.videoCodecParams
         params.bitrate = Number.fromLocaleString(locale, bitrate.text)
         params.gop = Number.fromLocaleString(locale, videoGOP.text)
-        Recording.videoCodecParams = params
-        let options = Recording.videoCodecOptions
+        recording.videoCodecParams = params
+        let options = recording.videoCodecOptions
 
         for (let key in controlValues)
             options[key] = controlValues[key]
 
-        Recording.videoCodecOptions = options
+        recording.videoCodecOptions = options
     }
     onRejected: {
-        if (Recording.videoCodecParams.codec) {
-            bitrate.text = Recording.videoCodecParams.bitrate
-            videoGOP.text = Recording.videoCodecParams.gop
+        if (recording.videoCodecParams.codec) {
+            bitrate.text = recording.videoCodecParams.bitrate
+            videoGOP.text = recording.videoCodecParams.gop
         } else {
             bitrate.text = ""
             videoGOP.text = ""
@@ -223,9 +217,9 @@ Dialog {
                 mainLayout.children[i].restore()
     }
     onReset: {
-        if (Recording.videoCodecParams.codec) {
-            bitrate.text = Recording.videoCodecParams.defaultBitrate
-            videoGOP.text = Recording.videoCodecParams.defaultGOP
+        if (recording.videoCodecParams.codec) {
+            bitrate.text = recording.videoCodecParams.defaultBitrate
+            videoGOP.text = recording.videoCodecParams.defaultGOP
         } else {
             bitrate.text = ""
             videoGOP.text = ""
@@ -255,7 +249,7 @@ Dialog {
             signal controlChanged(string key, variant value)
 
             function restore() {
-                let value = Recording.videoCodecOptions[key]
+                let value = recording.videoCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -286,7 +280,7 @@ Dialog {
             signal controlChanged(string key, variant value)
 
             function restore() {
-                let value = Recording.videoCodecOptions[key]
+                let value = recording.videoCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -318,7 +312,7 @@ Dialog {
             signal controlChanged(string key, variant value)
 
             function restore() {
-                let value = Recording.videoCodecOptions[key]
+                let value = recording.videoCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -384,7 +378,7 @@ Dialog {
             signal controlChanged(string key, variant value)
 
             function restore() {
-                let value = Recording.videoCodecOptions[key]
+                let value = recording.videoCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -403,9 +397,7 @@ Dialog {
         id: controlBoolean
 
         Switch {
-            LayoutMirroring.enabled: true
-            LayoutMirroring.childrenInherit: true
-            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 
             property string key: ""
             property variant defaultValue: null
@@ -413,7 +405,7 @@ Dialog {
             signal controlChanged(string key, variant value)
 
             function restore() {
-                let value = Recording.videoCodecOptions[key]
+                let value = recording.videoCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -443,7 +435,7 @@ Dialog {
             signal controlChanged(string key, variant value)
 
             function restore() {
-                let value = Recording.videoCodecOptions[key]
+                let value = recording.videoCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -490,7 +482,7 @@ Dialog {
 
             function currentMenuIndex(options)
             {
-                let value = Recording.videoCodecOptions[options[0]]
+                let value = recording.videoCodecOptions[options[0]]
 
                 if (!value)
                     value = options[7]
@@ -529,14 +521,12 @@ Dialog {
                 id: classFlag
 
                 CheckBox {
-                    LayoutMirroring.enabled: true
-                    LayoutMirroring.childrenInherit: true
                     Layout.fillWidth: true
                 }
             }
 
             function restore() {
-                let value = Recording.videoCodecOptions[key]
+                let value = recording.videoCodecOptions[key]
 
                 if (!value)
                     value = defaultValue
@@ -560,7 +550,7 @@ Dialog {
                 for (let i = flagsLayout.children.length - 1; i >= 0; i--)
                     flagsLayout.children[i].destroy()
 
-                let value = Recording.videoCodecOptions[options[0]]
+                let value = recording.videoCodecOptions[options[0]]
 
                 if (!value)
                     value = options[7]

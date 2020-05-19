@@ -21,11 +21,12 @@
 #define VIDEOLAYER_H
 
 #include <akelement.h>
+#include <akvideocaps.h>
 
 class VideoLayerPrivate;
 class VideoLayer;
+class CliOptions;
 class AkAudioCaps;
-class AkVideoCaps;
 class QQmlApplicationEngine;
 
 using VideoLayerPtr = QSharedPointer<VideoLayer>;
@@ -34,20 +35,35 @@ class VideoLayer: public QObject
 {
     Q_OBJECT
     Q_ENUMS(InputType)
+    Q_ENUMS(OutputType)
     Q_PROPERTY(QString videoInput
                READ videoInput
                WRITE setVideoInput
                RESET resetVideoInput
                NOTIFY videoInputChanged)
+    Q_PROPERTY(QStringList videoOutput
+               READ videoOutput
+               WRITE setVideoOutput
+               RESET resetVideoOutput
+               NOTIFY videoOutputChanged)
     Q_PROPERTY(QStringList inputs
                READ inputs
                NOTIFY inputsChanged)
-    Q_PROPERTY(AkAudioCaps audioCaps
-               READ audioCaps
-               NOTIFY audioCapsChanged)
-    Q_PROPERTY(AkVideoCaps videoCaps
-               READ videoCaps
-               NOTIFY videoCapsChanged)
+    Q_PROPERTY(QStringList outputs
+               READ outputs
+               NOTIFY outputsChanged)
+    Q_PROPERTY(AkAudioCaps inputAudioCaps
+               READ inputAudioCaps
+               NOTIFY inputAudioCapsChanged)
+    Q_PROPERTY(AkVideoCaps inputVideoCaps
+               READ inputVideoCaps
+               NOTIFY inputVideoCapsChanged)
+    Q_PROPERTY(AkVideoCaps::PixelFormatList supportedOutputPixelFormats
+               READ supportedOutputPixelFormats
+               CONSTANT)
+    Q_PROPERTY(AkVideoCaps::PixelFormat defaultOutputPixelFormat
+               READ defaultOutputPixelFormat
+               CONSTANT)
     Q_PROPERTY(AkElement::ElementState state
                READ state
                WRITE setState
@@ -66,22 +82,34 @@ class VideoLayer: public QObject
             InputDesktop,
             InputStream
         };
+        enum OutputType {
+            OutputUnknown,
+            OutputVirtualCamera,
+        };
 
         VideoLayer(QQmlApplicationEngine *engine=nullptr,
-                    QObject *parent=nullptr);
+                   QObject *parent=nullptr);
+        VideoLayer(const CliOptions &cliOptions,
+                   QQmlApplicationEngine *engine=nullptr,
+                   QObject *parent=nullptr);
         ~VideoLayer();
 
         Q_INVOKABLE QString videoInput() const;
+        Q_INVOKABLE QStringList videoOutput() const;
         Q_INVOKABLE QStringList inputs() const;
-        Q_INVOKABLE AkAudioCaps audioCaps() const;
-        Q_INVOKABLE AkVideoCaps videoCaps() const;
+        Q_INVOKABLE QStringList outputs() const;
+        Q_INVOKABLE AkAudioCaps inputAudioCaps() const;
+        Q_INVOKABLE AkVideoCaps inputVideoCaps() const;
+        Q_INVOKABLE AkVideoCaps::PixelFormatList supportedOutputPixelFormats() const;
+        Q_INVOKABLE AkVideoCaps::PixelFormat defaultOutputPixelFormat() const;
+        Q_INVOKABLE AkVideoCapsList supportedOutputVideoCaps(const QString &device) const;
         Q_INVOKABLE AkElement::ElementState state() const;
         Q_INVOKABLE bool playOnStart() const;
-        Q_INVOKABLE InputType deviceType(const QString &videoInput) const;
+        Q_INVOKABLE InputType deviceType(const QString &device) const;
         Q_INVOKABLE QStringList devicesByType(InputType type) const;
-        Q_INVOKABLE QString description(const QString &videoInput) const;
+        Q_INVOKABLE QString description(const QString &device) const;
         Q_INVOKABLE bool embedControls(const QString &where,
-                                       const QString &videoInput,
+                                       const QString &device,
                                        const QString &name={}) const;
         Q_INVOKABLE void removeInterface(const QString &where) const;
 
@@ -90,9 +118,11 @@ class VideoLayer: public QObject
 
     signals:
         void videoInputChanged(const QString &videoInput);
+        void videoOutputChanged(const QStringList &videoOutput);
         void inputsChanged(const QStringList &inputs);
-        void audioCapsChanged(const AkAudioCaps &audioCaps);
-        void videoCapsChanged(const AkVideoCaps &videoCaps);
+        void outputsChanged(const QStringList &outputs);
+        void inputAudioCapsChanged(const AkAudioCaps &inputAudioCaps);
+        void inputVideoCapsChanged(const AkVideoCaps &inputVideoCaps);
         void stateChanged(AkElement::ElementState state);
         void playOnStartChanged(bool playOnStart);
         void oStream(const AkPacket &packet);
@@ -102,9 +132,11 @@ class VideoLayer: public QObject
         void setInputStream(const QString &stream, const QString &description);
         void removeInputStream(const QString &stream);
         void setVideoInput(const QString &videoInput);
+        void setVideoOutput(const QStringList &videoOutput);
         void setState(AkElement::ElementState state);
         void setPlayOnStart(bool playOnStart);
         void resetVideoInput();
+        void resetVideoOutput();
         void resetState();
         void resetPlayOnStart();
         void setQmlEngine(QQmlApplicationEngine *engine=nullptr);
@@ -116,10 +148,12 @@ class VideoLayer: public QObject
         void saveVideoCaptureCaptureLib(const QString &captureLib);
         void saveDesktopCaptureCaptureLib(const QString &captureLib);
         void saveMultiSrcCodecLib(const QString &codecLib);
+        AkPacket iStream(const AkPacket &packet);
 
     friend VideoLayerPrivate;
 };
 
 Q_DECLARE_METATYPE(VideoLayer::InputType)
+Q_DECLARE_METATYPE(VideoLayer::OutputType)
 
 #endif // VIDEOLAYER_H
