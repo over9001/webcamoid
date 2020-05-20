@@ -284,8 +284,4 @@ branches:
     - master
 
 notifications:
-  recipients:
-    - petroff.ryan@gmail.com
-  email:
-    on_success: change
-    on_failure: change
+  email: false
