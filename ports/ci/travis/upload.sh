@@ -41,7 +41,7 @@ if [[ ( ! -z "$DAILY_BUILD" || ! -z "$RELEASE_BUILD" ) && "$TRAVIS_BRANCH" == "m
     curl -fL https://getcli.jfrog.io | sh
 
     ./jfrog bt config \
-        --user=hipersayanx \
+        --user=over9001 \
         --key=$BT_KEY \
         --licenses=GPL-3.0-or-later
 
@@ -52,7 +52,7 @@ if [[ ( ! -z "$DAILY_BUILD" || ! -z "$RELEASE_BUILD" ) && "$TRAVIS_BRANCH" == "m
         folder=$(dirname $packagePath)
 
         ./jfrog bt upload \
-            --user=hipersayanx \
+            --user=over9001 \
             --key=$BT_KEY \
             --override=true \
             --publish=$publish \
