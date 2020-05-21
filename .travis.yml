@@ -26,94 +26,6 @@ matrix:
   include:
   - os: linux
     dist: bionic
-    compiler: gcc
-    env:
-      - ARCH_ROOT_BUILD=1
-  - os: linux
-    dist: bionic
-    compiler: clang
-    env:
-      - ARCH_ROOT_BUILD=1
-  - os: linux
-    dist: bionic
-    compiler: gcc
-    env:
-      - ARCH_ROOT_BUILD=1
-      - ARCH_ROOT_MINGW=x86_64
-      - DAILY_BUILD=1
-  - os: linux
-    dist: bionic
-    compiler: gcc
-    env:
-      - ARCH_ROOT_BUILD=1
-      - ARCH_ROOT_MINGW=i686
-      - DAILY_BUILD=1
-  - os: linux
-    dist: bionic
-    compiler: gcc
-    env:
-      - ARCH_ROOT_BUILD=1
-      - ARCH_ROOT_MINGW=x86_64
-      - RELEASE_BUILD=1
-  - os: linux
-    dist: bionic
-    compiler: gcc
-    env:
-      - ARCH_ROOT_BUILD=1
-      - ARCH_ROOT_MINGW=i686
-      - RELEASE_BUILD=1
-  - os: linux
-    dist: bionic
-    services:
-      - docker
-    compiler: gcc
-    env:
-      - DOCKERSYS=debian
-      - DOCKERIMG=debian:testing
-  - os: linux
-    dist: bionic
-    services:
-      - docker
-    compiler: clang
-    env:
-      - DOCKERSYS=debian
-      - DOCKERIMG=debian:testing
-  - os: linux
-    dist: bionic
-    services:
-      - docker
-    compiler: gcc
-    env:
-      - DOCKERSYS=fedora
-      - DOCKERIMG=fedora:rawhide
-      - FEDORAVER=rawhide
-  - os: linux
-    dist: bionic
-    services:
-      - docker
-    compiler: clang
-    env:
-      - DOCKERSYS=fedora
-      - DOCKERIMG=fedora:rawhide
-      - FEDORAVER=rawhide
-  - os: linux
-    dist: bionic
-    services:
-      - docker
-    compiler: gcc
-    env:
-      - DOCKERSYS=opensuse
-      - DOCKERIMG=opensuse/tumbleweed
-  - os: linux
-    dist: bionic
-    services:
-      - docker
-    compiler: clang
-    env:
-      - DOCKERSYS=opensuse
-      - DOCKERIMG=opensuse/tumbleweed
-  - os: linux
-    dist: bionic
     services:
       - docker
     compiler: gcc
@@ -121,6 +33,94 @@ matrix:
       - DOCKERSYS=debian
       - DOCKERIMG=ubuntu:bionic
       - DAILY_BUILD=1
+  - os: linux
+    dist: bionic
+    compiler: gcc
+    env:
+      - ARCH_ROOT_BUILD=1
+  - os: linux
+    dist: bionic
+    compiler: clang
+    env:
+      - ARCH_ROOT_BUILD=1
+  - os: linux
+    dist: bionic
+    compiler: gcc
+    env:
+      - ARCH_ROOT_BUILD=1
+      - ARCH_ROOT_MINGW=x86_64
+      - DAILY_BUILD=1
+  - os: linux
+    dist: bionic
+    compiler: gcc
+    env:
+      - ARCH_ROOT_BUILD=1
+      - ARCH_ROOT_MINGW=i686
+      - DAILY_BUILD=1
+  - os: linux
+    dist: bionic
+    compiler: gcc
+    env:
+      - ARCH_ROOT_BUILD=1
+      - ARCH_ROOT_MINGW=x86_64
+      - RELEASE_BUILD=1
+  - os: linux
+    dist: bionic
+    compiler: gcc
+    env:
+      - ARCH_ROOT_BUILD=1
+      - ARCH_ROOT_MINGW=i686
+      - RELEASE_BUILD=1
+  - os: linux
+    dist: bionic
+    services:
+      - docker
+    compiler: gcc
+    env:
+      - DOCKERSYS=debian
+      - DOCKERIMG=debian:testing
+  - os: linux
+    dist: bionic
+    services:
+      - docker
+    compiler: clang
+    env:
+      - DOCKERSYS=debian
+      - DOCKERIMG=debian:testing
+  - os: linux
+    dist: bionic
+    services:
+      - docker
+    compiler: gcc
+    env:
+      - DOCKERSYS=fedora
+      - DOCKERIMG=fedora:rawhide
+      - FEDORAVER=rawhide
+  - os: linux
+    dist: bionic
+    services:
+      - docker
+    compiler: clang
+    env:
+      - DOCKERSYS=fedora
+      - DOCKERIMG=fedora:rawhide
+      - FEDORAVER=rawhide
+  - os: linux
+    dist: bionic
+    services:
+      - docker
+    compiler: gcc
+    env:
+      - DOCKERSYS=opensuse
+      - DOCKERIMG=opensuse/tumbleweed
+  - os: linux
+    dist: bionic
+    services:
+      - docker
+    compiler: clang
+    env:
+      - DOCKERSYS=opensuse
+      - DOCKERIMG=opensuse/tumbleweed
   - os: linux
     dist: bionic
     services:
