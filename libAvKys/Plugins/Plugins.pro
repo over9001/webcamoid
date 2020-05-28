@@ -46,6 +46,7 @@ isEmpty(NOVIDEOEFFECTS): SUBDIRS += \
     ChangeHSL \
     Charify \
     Cinema \
+    Cinema2 \
     ColorFilter \
     ColorReplace \
     ColorTap \
